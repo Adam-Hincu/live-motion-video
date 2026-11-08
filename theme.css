@@ -1,0 +1,50 @@
+:root {
+
+  /* COLORS */
+  --color-primary: ;
+  --color-accent: ;
+  --color-background: ;
+  --color-surface: ;
+  --color-text: ;
+  --color-text-secondary: ;
+  --color-text-muted: ;
+  --color-border: ;
+
+  /* TYPOGRAPHY */
+  --font-display: ;
+  --font-body: ;
+
+  --font-size-title: ;
+  --font-size-heading: ;
+  --font-size-body: ;
+  --font-size-caption: ;
+
+  --font-weight-regular: ;
+  --font-weight-medium: ;
+  --font-weight-semibold: ;
+  --font-weight-bold: ;
+
+  --line-height-heading: ;
+  --line-height-body: ;
+
+  --letter-spacing: ;
+
+  /* SPACING */
+  --spacing-sm: ;
+  --spacing-md: ;
+  --spacing-lg: ;
+  --spacing-xl: ;
+
+  /* LAYOUT */
+  --layout-padding: ;
+
+  /* SHAPES */
+  --radius-sm: ;
+  --radius-md: ;
+  --radius-lg: ;
+  --radius-full: ;
+
+  /* EFFECTS */
+  --shadow: ;
+
+}

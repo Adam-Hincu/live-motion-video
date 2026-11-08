@@ -1,0 +1,11 @@
+8. Music And Audio Design
+- Compose all audio entirely yourself and synchronize it perfectly with the video. Do not download any music, including royalty-free music or music of any kind unless explicitly asked for.
+- Do NOT use programmatic-sounding synthesizers and any artificial or fake-sounding instruments or sounds.
+- Avoid classical instruments such as the piano unless explicitly asked for.
+- Give the music a personality and refined taste. Avoid generic, low-effort results; it must feel intentional and align naturally with the subject’s purpose, design, and branding.
+- Ensure audio levels are balanced and consistent, with no clipping or distortion.
+- Use realistic, natural-sounding audio with real, high quality instrument packs and drum kits.
+- Avoid high pitched audio.
+- Only use programmatically generated audio if no equivalent exists in the packs, and give it exceptional attention to ensure it sounds excellent.
+- Never use “hiss” or “tsss” sound effects for actions like sliding unless explicitly asked for.
+- Ensure the music, sound effects, overall sound design, and visuals work in perfect harmony, enhancing and strengthening one another.

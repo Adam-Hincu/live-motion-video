@@ -1,0 +1,26 @@
+{
+  "identity": {
+    "name": null,
+    "description": null,
+    "website": null
+  },
+  "audience_and_problem": {
+    "main_problem": null,
+    "target_audience": null
+  },
+  "branding": {
+    "logo": null,
+    "logo_description": null,
+    "brand_colors": null
+  },
+  "assets": {
+    "logo_files": null
+  },
+  "video_settings": {
+    "framerate": null,
+    "quality": null,
+    "aspect_ratio": null,
+    "has_text_to_speech": false
+  },
+  "additional_context": null
+}
