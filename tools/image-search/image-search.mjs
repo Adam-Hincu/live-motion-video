@@ -1,7 +1,10 @@
 /**
  * Image search for Openverse + Wikimedia Commons. The search API is dependency-free;
- * the CLI at the bottom (download + collages) needs `sharp` (run `npm install` in this folder).
+ * the CLI at the bottom (download + collages) uses ../collage/collage.mjs, which needs
+ * `sharp` (run `npm install` in tools/collage).
  *
+ * --min-width / --min-height drop images whose real downloaded size is smaller (never saved,
+ *   never collaged); --min-size is the collage tile minimum.
  * CLI: node image-search.mjs "red fox" ["mountain" ...] [--count 40] [--min-size 300]
  *   [--width 2400] [--height 1600] [--gap 24] [--out dir] [--source openverse|commons]
  * Writes searches/<query>/originals/0001.jpg, collages/collage-01.jpg, results.json.
@@ -284,115 +287,18 @@ export function createImageSearch(defaults = {}) {
 // ---------------------------------------------------------------------------
 
 const EXT = { jpeg: 'jpg', tiff: 'tif', heif: 'heic' };
-const xmlEscape = (t) => String(t).replace(/[<>&"']/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;' }[c]));
 const slugify = (t) => t.toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g, '').trim().replace(/[\s_-]+/g, '-').slice(0, 60) || 'search';
 
-/**
- * Pick the best justified-row layout for the images with aspect ratios `asp`.
- * Every image keeps its aspect ratio, rows fill the full width, each image's shorter
- * side is >= minSize and the whole thing fits in `height`. Among row counts the one
- * using the most vertical space wins, so a short last collage gets big images.
- */
-function bestLayout(asp, o) {
-  const n = asp.length, { width: W, height: H, gap, caption: cap, minSize } = o;
-  const rowH = (i, j) => {
-    let sum = 0, minA = 1;
-    for (let t = i; t < j; t++) { sum += asp[t]; minA = Math.min(minA, asp[t]); }
-    const h = (W - (j - i - 1) * gap) / sum;
-    if (h * minA < minSize - 1e-6 || h + cap > H) return Infinity;
-    return h;
-  };
-  const cost = Array.from({ length: n }, (_, i) => Array.from({ length: n + 1 }, (_, j) => (j > i ? rowH(i, j) : Infinity)));
-  let best = null;
-  let prev = Array(n + 1).fill(Infinity);
-  prev[0] = 0;
-  const parents = [];
-  for (let r = 1; r <= n; r++) {
-    const cur = Array(n + 1).fill(Infinity), par = Array(n + 1).fill(-1);
-    for (let j = 1; j <= n; j++) {
-      for (let i = r - 1; i < j; i++) {
-        const v = prev[i] + cost[i][j] + cap;
-        if (v < cur[j]) { cur[j] = v; par[j] = i; }
-      }
-    }
-    parents.push(par);
-    const total = cur[n] + (r - 1) * gap;
-    if (total <= H && (!best || total > best.total)) best = { total, r };
-    prev = cur;
-  }
-  if (!best) return null;
-  const cuts = [n];
-  for (let r = best.r, j = n; r >= 1; r--) { j = parents[r - 1][j]; cuts.unshift(j); }
-  const rows = [];
-  let y = 0;
-  for (let k = 0; k < cuts.length - 1; k++) {
-    const i = cuts[k], j = cuts[k + 1], h = Math.round(cost[i][j]);
-    const tiles = [];
-    let x = 0, sum = 0;
-    for (let t = i; t < j; t++) sum += asp[t];
-    const avail = W - (j - i - 1) * gap;
-    for (let t = i; t < j; t++) {
-      const w = t === j - 1 ? W - x : Math.round((asp[t] / sum) * avail);
-      tiles.push({ index: t, x, y, w, h });
-      x += w + gap;
-    }
-    rows.push(tiles);
-    y += h + cap + gap;
-  }
-  return { rows, height: y - gap };
-}
-
-/** Greedily put as many images as fit on each collage page. */
-function layoutPages(images, o) {
-  const pages = [];
-  for (let i = 0; i < images.length;) {
-    let best = null, n = 0;
-    // Feasibility is not strictly monotonic in the image count (12 may not fit while 13
-    // does, because row breaks shift), so keep scanning a while past the first failure.
-    for (let k = 1, misses = 0; i + k <= images.length && misses < 12; k++) {
-      const lay = bestLayout(images.slice(i, i + k).map((im) => im.width / im.height), o);
-      if (!lay) { if (best) misses++; continue; }
-      best = lay; n = k; misses = 0;
-    }
-    if (!best) {
-      // Too extreme for the min size: show it alone, scaled to fit the canvas.
-      const im = images[i], scale = Math.min(o.width / im.width, (o.height - o.caption) / im.height);
-      const w = Math.round(im.width * scale), h = Math.round(im.height * scale);
-      best = { rows: [[{ index: 0, x: Math.round((o.width - w) / 2), y: 0, w, h }]], height: h + o.caption };
-      n = 1;
-    }
-    pages.push({ images: images.slice(i, i + n), layout: best });
-    i += n;
-  }
-  return pages;
-}
-
-async function renderCollage(sharp, page, o, file) {
-  const pad = o.gap, W = o.width + 2 * pad, H = page.layout.height + 2 * pad;
-  const composites = [], labels = [];
-  for (const tile of page.layout.rows.flat()) {
-    const im = page.images[tile.index];
-    const input = await sharp(im.path, { failOn: 'none' }).rotate().resize(tile.w, tile.h, { fit: 'fill' })
-      .flatten({ background: '#ffffff' }).png().toBuffer();
-    composites.push({ input, left: pad + tile.x, top: pad + tile.y });
-    const text = `${im.file}  ${im.width}×${im.height}`;
-    const size = Math.max(9, Math.min(o.caption * 0.5, tile.w / (text.length * 0.62)));
-    labels.push(`<text x="${pad + tile.x}" y="${pad + tile.y + tile.h + o.caption * 0.68}" font-size="${size.toFixed(1)}">${xmlEscape(text)}</text>`);
-  }
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><g font-family="Arial, Helvetica, sans-serif" fill="#222222">${labels.join('')}</g></svg>`;
-  composites.push({ input: Buffer.from(svg), left: 0, top: 0 });
-  await sharp({ create: { width: W, height: H, channels: 3, background: '#ffffff' } })
-    .composite(composites).jpeg({ quality: 92 }).toFile(file);
-  return { width: W, height: H };
-}
-
-async function downloadAll(found, dir, o, sharp) {
+async function downloadAll(found, dir, o, readImageInfo) {
   const { writeFile } = await import('node:fs/promises');
   const results = new Array(found.length);
-  let next = 0;
+  const tooSmall = (w, h) => w < (o.minWidth || 0) || h < (o.minHeight || 0);
+  let next = 0, small = 0;
   const worker = async () => {
     while (next < found.length) {
       const i = next++, item = found[i];
+      // The API often reports sizes; skip known-small images without downloading them.
+      if (item.width && item.height && tooSmall(item.width, item.height)) { small++; continue; }
       for (let attempt = 0; attempt < 5; attempt++) {
         try {
           const res = await fetch(item.url, { headers: { 'User-Agent': o.userAgent }, signal: AbortSignal.timeout(60_000) });
@@ -401,11 +307,9 @@ async function downloadAll(found, dir, o, sharp) {
             throw Object.assign(new Error(`HTTP ${res.status}`), { retry: res.status === 429 || res.status >= 500, wait: Number.isFinite(wait) && wait > 0 ? Math.min(wait, 30) * 1000 : 0 });
           }
           const buf = Buffer.from(await res.arrayBuffer());
-          const meta = await sharp(buf, { failOn: 'none' }).metadata();
-          const swap = meta.orientation >= 5;
-          const width = swap ? meta.height : meta.width, height = swap ? meta.width : meta.height;
-          if (!width || !height) throw new Error('unreadable image');
-          results[i] = { item, buf, width, height, ext: EXT[meta.format] || meta.format };
+          const { width, height, format } = await readImageInfo(buf);
+          if (tooSmall(width, height)) { small++; break; } // real size is too small: do not save it
+          results[i] = { item, buf, width, height, ext: EXT[format] || format };
           break;
         } catch (error) {
           if (attempt === 4 || error.retry === false) { console.warn(`  skip ${item.url.split('?')[0]}: ${error.message}`); break; }
@@ -422,10 +326,11 @@ async function downloadAll(found, dir, o, sharp) {
     await writeFile(`${dir}/${file}`, r.buf);
     saved.push({ file, id: file.replace(/\.[^.]+$/, ''), path: `${dir}/${file}`, width: r.width, height: r.height, ...r.item });
   }
+  if (small) console.log(`  skipped ${small} below the minimum size (${o.minWidth ? `width ${o.minWidth}` : 'any width'}, ${o.minHeight ? `height ${o.minHeight}` : 'any height'})`);
   return saved;
 }
 
-async function runSearch(query, o, sharp) {
+async function runSearch(query, o, { readImageInfo, createCollages }) {
   const { mkdir, writeFile, access } = await import('node:fs/promises');
   const found = [], seen = new Set();
   for (let page = 1; found.length < o.count && page <= 20; page++) {
@@ -442,21 +347,17 @@ async function runSearch(query, o, sharp) {
   await mkdir(originals, { recursive: true });
   await mkdir(collages, { recursive: true });
 
-  const saved = await downloadAll(found, originals, o, sharp);
+  const saved = await downloadAll(found, originals, o, readImageInfo);
   console.log(`  downloaded ${saved.length}/${found.length}`);
-  const pages = layoutPages(saved, o);
-  const collageInfo = [];
-  for (let p = 0; p < pages.length; p++) {
-    const name = `collage-${String(p + 1).padStart(2, '0')}.jpg`;
-    const dims = await renderCollage(sharp, pages[p], o, `${collages}/${name}`);
-    collageInfo.push({ file: name, ...dims, images: pages[p].images.map((im) => im.file) });
-    console.log(`  ${name}: ${pages[p].images.length} images (${dims.width}×${dims.height})`);
-  }
+  const { collages: collageInfo } = await createCollages(saved.map(({ path, file, width, height }) => ({ path, width, height, caption: `${file}  ${width}×${height}` })), {
+    outDir: collages, width: o.width, height: o.height, gap: o.gap, minSize: o.minSize, captionHeight: o.caption,
+  });
+  for (const c of collageInfo) console.log(`  ${c.file}: ${c.images.length} images (${c.width}×${c.height})`);
   await writeFile(`${root}/results.json`, JSON.stringify({
     query, createdAt: new Date().toISOString(),
     images: saved.map(({ file, id, width, height, title, url, pageUrl, creator, license, source, provider }) =>
       ({ file, id, width, height, title, url, pageUrl, creator, license, source, provider })),
-    collages: collageInfo,
+    collages: collageInfo.map((c) => ({ file: c.file, width: c.width, height: c.height, images: c.images.map((im) => im.caption.split('  ')[0]) })),
   }, null, 2));
   console.log(`  -> ${root}`);
 }
@@ -467,31 +368,31 @@ async function main() {
     allowPositionals: true,
     options: {
       count: { type: 'string', default: '40' }, out: { type: 'string', default: 'searches' },
-      'min-size': { type: 'string', default: '300' }, width: { type: 'string', default: '2400' },
+      'min-size': { type: 'string', default: '300' }, 'min-width': { type: 'string' }, 'min-height': { type: 'string' }, width: { type: 'string', default: '2400' },
       height: { type: 'string', default: '1600' }, gap: { type: 'string', default: '24' },
       caption: { type: 'string', default: '44' }, concurrency: { type: 'string', default: '2' }, source: { type: 'string', default: 'openverse' },
       'user-agent': { type: 'string', default: 'image-search-script/1.0 (local tool)' },
     },
   });
   if (!positionals.length) {
-    console.error('Usage: node image-search.mjs "query" ["query2" ...] [--count 40] [--min-size 300] [--width 2400] [--height 1600] [--gap 24] [--out searches] [--source openverse|commons]');
+    console.error('Usage: node image-search.mjs "query" ["query2" ...] [--count 40] [--min-size 300] [--min-width N] [--min-height N] [--width 2400] [--height 1600] [--gap 24] [--out searches] [--source openverse|commons]');
     process.exit(1);
   }
   const { fileURLToPath } = await import('node:url');
   const { resolve, dirname } = await import('node:path');
   const here = dirname(fileURLToPath(import.meta.url));
-  let sharp;
-  try { sharp = (await import('sharp')).default; } catch { console.error('Missing dependency: run `npm install` in tools/image-search'); process.exit(1); }
+  let collage;
+  try {
+    collage = await import('../collage/collage.mjs');
+    await collage.getSharp();
+  } catch (error) { console.error(error.message); process.exit(1); }
   const o = {
-    count: Number(v.count), minSize: Number(v['min-size']), width: Number(v.width), height: Number(v.height),
+    count: Number(v.count), minWidth: v['min-width'] ? Number(v['min-width']) : null, minHeight: v['min-height'] ? Number(v['min-height']) : null, minSize: Number(v['min-size']), width: Number(v.width), height: Number(v.height),
     concurrency: Number(v.concurrency), gap: Number(v.gap), caption: Number(v.caption), source: v.source, userAgent: v['user-agent'],
     // The default output folder sits next to this script; an explicit --out is relative to the cwd.
     out: v.out === 'searches' ? resolve(here, 'searches') : resolve(process.cwd(), v.out),
   };
-  // Inner canvas excludes the outer margin (= gap), which renderCollage adds back.
-  o.width -= 2 * o.gap;
-  o.height -= 2 * o.gap;
-  for (const q of positionals) await runSearch(q, o, sharp);
+  for (const q of positionals) await runSearch(q, o, collage);
 }
 
 if (typeof process !== 'undefined' && process.argv?.[1]

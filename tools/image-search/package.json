@@ -1,9 +1,0 @@
-{
-  "name": "image-search",
-  "private": true,
-  "type": "module",
-  "description": "Image search (Openverse + Wikimedia Commons) with download and collage output.",
-  "dependencies": {
-    "sharp": "^0.34.5"
-  }
-}

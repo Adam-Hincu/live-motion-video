@@ -1,0 +1,9 @@
+{
+  "name": "collage",
+  "private": true,
+  "type": "module",
+  "description": "Reusable captioned image collage tool.",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}
