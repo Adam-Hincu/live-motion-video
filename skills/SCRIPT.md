@@ -1,4 +1,3 @@
-7. Script
 - Avoid abstract or marketing-style language. Use extremely simple, direct English so viewers who know nothing about the subject fully understand what it is by the end of the video.
 - Only show text that is essential for viewers to read. Assume they will read every word, so avoid unnecessary details and overly long text. Never include example prompts if it’s about AI unless explicitly asked for.
 - Always use verbs.

@@ -27,6 +27,27 @@
 const IMAGE_EXT = /\.(jpe?g|png|webp|gif|avif|tiff?|heic|svg)$/i;
 const xmlEscape = (t) => String(t).replace(/[<>&"']/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;' }[c]));
 
+// Captions use a bundled font (npm package dejavu-fonts-ttf) so they look the same on every
+// system, even ones with no fonts installed. Falls back to the system "Sans" font if missing.
+const FONT_FILE = await (async () => {
+  const { fileURLToPath } = await import('node:url');
+  const { existsSync } = await import('node:fs');
+  const file = fileURLToPath(new URL('./node_modules/dejavu-fonts-ttf/ttf/DejaVuSans.ttf', import.meta.url));
+  return existsSync(file) ? file : null;
+})();
+
+/** Render one caption as a transparent PNG no wider than maxWidth. Returns { input, width, height }. */
+async function captionImage(sharp, text, size, maxWidth) {
+  for (let px = size; ; px = Math.floor(px * 0.9)) {
+    const input = await sharp({ text: {
+      text: `<span foreground="#222222">${xmlEscape(text)}</span>`, rgba: true, wrap: 'none', dpi: 72,
+      font: `${FONT_FILE ? 'DejaVu Sans' : 'Sans'} ${px}`, ...(FONT_FILE ? { fontfile: FONT_FILE } : {}),
+    } }).png().toBuffer();
+    const { width, height } = await sharp(input).metadata();
+    if (width <= maxWidth || px <= 8) return { input, width, height };
+  }
+}
+
 /** Load `sharp` with a clear error when the tool has not been set up yet. */
 export async function getSharp() {
   try { return (await import('sharp')).default; } catch (error) {
@@ -126,20 +147,16 @@ function layoutPages(images, o) {
 
 async function renderPage(sharp, page, o, file) {
   const pad = o.gap, W = o.width + 2 * pad, H = page.layout.height + 2 * pad;
-  const composites = [], labels = [];
+  const composites = [];
   for (const tile of page.layout.rows.flat()) {
     const im = page.images[tile.index];
     const input = await sharp(im.path, { failOn: 'none' }).rotate().resize(tile.w, tile.h, { fit: 'fill' })
       .flatten({ background: '#ffffff' }).png().toBuffer();
     composites.push({ input, left: pad + tile.x, top: pad + tile.y });
     if (o.caption) {
-      const size = Math.max(9, Math.min(o.caption * 0.5, tile.w / (im.caption.length * 0.62)));
-      labels.push(`<text x="${pad + tile.x}" y="${pad + tile.y + tile.h + o.caption * 0.68}" font-size="${size.toFixed(1)}">${xmlEscape(im.caption)}</text>`);
+      const label = await captionImage(sharp, im.caption, Math.round(o.caption * 0.45), tile.w);
+      composites.push({ input: label.input, left: pad + tile.x, top: pad + tile.y + tile.h + Math.max(2, Math.round((o.caption - label.height) / 2)) });
     }
-  }
-  if (labels.length) {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><g font-family="Arial, Helvetica, sans-serif" fill="#222222">${labels.join('')}</g></svg>`;
-    composites.push({ input: Buffer.from(svg), left: 0, top: 0 });
   }
   const canvas = sharp({ create: { width: W, height: H, channels: 3, background: '#ffffff' } }).composite(composites);
   await (o.format === 'png' ? canvas.png() : canvas.jpeg({ quality: 92 })).toFile(file);

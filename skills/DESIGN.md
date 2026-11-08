@@ -1,4 +1,3 @@
-5. Design Rules
 - Keep the design clean and polished, without the “artsy” look, eyebrow labels, or subtitles.
 - Avoid cheap-looking gradients, especially radial, diamond, and angular styles. Use high-quality imagery and ensure any gradients are smooth, refined, and free of banding.
 - Never imitate media with abstract shapes. Use actual media or meaningful visuals, and avoid random, purposeless animations.
@@ -11,3 +10,8 @@
 - Avoid all gradients, blue-to-purple color schemes, and glow effects unless explicitly defined in `theme.css` or `THEME.md`.
 - CRITICAL: ALWAYS use design tokens. NEVER hardcode values unless absolutely necessary. Prefer reusable tokens in theme.css, but avoid tokens for one-off values. Keep theme.css minimal and hardcoding to an absolute minimum.
 - When showing UI in videos, cleanly recreate only the relevant elements. Avoid screenshots, overlays, and unnecessary details. Use skeleton placeholders only as a last resort. Assume viewers read everything on screen. Show only essential information.
+- No slop. Study the subject closely: smoothness, timing, shot durations, fonts, elements.
+- It should look like something you did completely on yourself with your own taste.
+- Every morph must be flawless, with no stretching, clipping, or abrupt transitions.
+- Avoid invented or “vibe-coded” UI. Verify the subject’s official interface before recreating it; otherwise, omit it or request references.
+- Every on-screen text element must add meaningful context asume the viewers read everything.

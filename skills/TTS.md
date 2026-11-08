@@ -1,0 +1,1 @@
+- If the video has spoken text, use a lightweight, high-accuracy forced-alignment model to extract word-level timestamps from the provided script and audio, ensuring precise audio-visual sync. Check system specs and choose the best supported model.
