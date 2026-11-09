@@ -17,8 +17,6 @@
     "logo_files": null
   },
   "video_settings": {
-    "framerate": null,
-    "quality": null,
     "aspect_ratio": null,
     "has_text_to_speech": false
   },

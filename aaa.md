@@ -2,3 +2,18 @@
 - When given sensitive data or API keys, store them securely in `.env.local` and create a `.env.example` with placeholders.
 - Never ask questions already covered in `AGENTS.md` or questions that add no value.
 - Complete the initial questions and optional TTS setup, then begin immediately. Fill gaps independently and work without interruption, automatically using fallbacks when issues arise.
+
+READ ALL OF THESE ONE BY ONE, THESE ARE YOUR SKILLS FOLLOW THEM.
+AUDIO.md
+DESIGN.md
+GRADIENTS.md
+MOTION.md
+PROJECT.md
+QUALITY.md
+RESEARCH.md
+SCRIPT.md
+TOOLS.md
+TTS.md
+
+Default to 60 fps, and qhd 2k high quality.
+always attach the final render to the chat when you finish.
