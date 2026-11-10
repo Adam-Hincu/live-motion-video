@@ -17,3 +17,4 @@ TTS.md
 
 Default to 60 fps, and qhd 2k high quality.
 always attach the final render to the chat when you finish.
+- Keep the video dynamic while allowing enough time to process all visuals, text, and narration, without feeling rushed or slow.

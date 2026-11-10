@@ -9,3 +9,4 @@
 - Never use “hiss” or “tsss” sound effects for actions like sliding unless explicitly asked for.
 - Ensure the music, sound effects, overall sound design, and visuals work in perfect harmony, enhancing and strengthening one another.
 - The video must be fully understandable without audio. Never rely on sound to communicate essential information.
+- Download the audio pack, sound pack, instrument pack online, research for it and download it from places like github.
