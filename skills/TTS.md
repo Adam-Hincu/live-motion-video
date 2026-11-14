@@ -1,75 +1,13 @@
-- If the video has spoken text, use a lightweight, high-accuracy forced-alignment model to extract word-level timestamps from the provided script and audio, ensuring precise audio-visual sync. Check system specs and choose the best supported model.
+This guide covers Text-To-Speech setup, configuration, and usage.
 
-Forced alignment models:
+1. User Questions
+- Ask how the user wants to access the TTS service: MCP, API key, browser, local model, or another method.
+- If an API key or other sensitive information is needed, offer two options: share it in chat for you to configure, or add it privately to `.env.local`. Briefly explain the privacy risks of sharing secrets in chat, without exaggerating or repeating the warning. Warning the user once is enough.
 
-1. ENGLISH — NORMAL
-   Model: Montreal Forced Aligner (MFA)
-   Size: ~144 MB
-
-   Model Download (Hugging Face):
-   https://huggingface.co/MontrealCorpusTools/english_us_arpa
-
-   Documentation:
-   https://montreal-forced-aligner.readthedocs.io/en/latest/
-
-
-2. MULTILINGUAL — NORMAL
-   Model: Multilingual Word Aligner (MWA)
-   Size: ~1,300–1,600+ MB (1.3–1.6+ GB)
-
-   Model Download (Read Speech):
-   https://huggingface.co/MLSpeech/mwa-timit
-
-   Model Download (Conversational Speech):
-   https://huggingface.co/MLSpeech/mwa-buckeye
-
-   Required MMS Backbone:
-   https://huggingface.co/facebook/mms-1b-all
-
-   Documentation:
-   https://github.com/MLSpeech/Multilingual-Word-Aligner/blob/main/README.md
-
-
-3. ENGLISH — COMPACT
-   Model: PocketSphinx 5.1.1
-   Size: ~29 MB (package download)
-   Model data: ~38 MB uncompressed
-
-   Model Download (Official GitHub Model Files):
-   https://github.com/cmusphinx/pocketsphinx/tree/main/model/en-us
-
-   Model Download (Hugging Face Mirror):
-   https://huggingface.co/camenduru/pocketsphinx/tree/main/model/en-us
-
-   Documentation:
-   https://pocketsphinx.readthedocs.io/en/latest/
-
-
-4. MULTILINGUAL — COMPACT
-   Model: Bournemouth Forced Aligner 2.0 (ph66)
-   Size: ~55 MB (acoustic model only)
-
-   Model Download (Multilingual):
-   https://huggingface.co/Tabahi/CUPE-3-mls7
-
-   Model Download (English):
-   https://huggingface.co/Tabahi/CUPE-3-en
-
-   Documentation:
-   https://speech-industry.github.io/bournemouth-forced-aligner/
-
-   Model Documentation:
-   https://speech-industry.github.io/bournemouth-forced-aligner/about-models/
-
-
-IMPORTANT NOTES:
-- All four support local, offline forced alignment.
-- All require audio + supplied transcript for alignment.
-- PocketSphinx also supports audio-only transcription.
-- MFA requires a compatible pronunciation dictionary.
-- MWA requires additional MMS model dependencies.
-- BFA ph66 requires eSpeak-NG for phonemization.
-- BFA's ~55 MB size excludes runtime and dependencies.
-- PocketSphinx's ~29 MB figure refers to its package,
-  not just the acoustic model.
-- Reported sizes are approximate.
+2. Setup
+- Once connected to the TTS service, run a quick test to verify it works. If it fails, explain the issue simply, including insufficient credits or usage limits.
+- Run `system-info.mjs` to check the user's system specifications and hardware capabilities.
+- Install the most accurate local speech alignment model compatible with the user's hardware and language, capable of identifying each spoken word's precise start and end timestamps.
+- Add a model installation script to Git and exclude the large model files from version control.
+- Use word-level speech alignment to synchronize all video elements precisely with the narration.
+- For local TTS, prefer Kokoro or Fish Audio, depending on the user's hardware capabilities.

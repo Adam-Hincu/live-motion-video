@@ -31,4 +31,4 @@ This guide covers project setup, its purpose, user interaction, and essential wo
 - Mention that every question is skippable.
 - In addition to the questions used to complete `project-context.json`, ask one final open-ended question inviting the user to share anything else you should know.
 - Do not mention internal file-handling details, such as `null` or `N/A`, to the user.
-- Ask whether the user wants text-to-speech. If yes, ask which service or method to use and how to access it. Suggest ways to do so.
+- Initially, only ask whether the user wants text-to-speech (TTS). If yes, follow `TTS.md` for setup questions and instructions. If no, skip TTS entirely.
