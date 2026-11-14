@@ -1,4 +1,4 @@
-This guide covers the available tools: `collage.mjs`, `image-search.mjs`, `video-frames.mjs`, and `system-info.mjs`.
+This guide covers and documents the available tools: `collage.mjs`, `image-search.mjs`, `video-frames.mjs`, and `system-info.mjs`.
 
 1. Collage
 - What it does: `collage.mjs` combines multiple images into one collage, saving tokens and making it easier to compare and select images.
