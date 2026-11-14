@@ -1,26 +1,26 @@
 Overall Aesthetic
-[Describe the overall visual identity, atmosphere, personality, and feeling the design should communicate. What should someone immediately perceive when watching the video?]
+The visual identity is highly modern, minimalist, and tech-forward, designed to communicate speed, intelligence, and seamless integration[cite: 3]. The atmosphere is polished and professional, evoking the immediate feel of a premium, operating system-level digital tool[cite: 3].
 
 Composition & Layout
-[Describe how elements are arranged within the frame. Explain the approach to balance, alignment, negative space, visual density, framing, and focal points.]
+Elements are primarily center-aligned, heavily utilizing negative space to draw absolute focus to central typography and UI components[cite: 3]. Visual density is kept extremely low, maintaining a balanced, uncluttered frame where single focal points guide the viewer's eye sequentially[cite: 3].
 
 Motion Character
-[Describe how movement should feel and behave aesthetically. Explain the overall animation personality, how elements enter and leave, and how visual continuity is maintained. Avoid technical animation values.]
+Movement behaves with a snappy, fluid, and kinetic personality[cite: 3]. Elements enter and leave the frame using fast ease-in and ease-out curves, supported by typing effects and swift sliding transitions that maintain sharp visual continuity[cite: 3].
 
 Imagery & Media
-[Describe whether and how images and videos are used, their visual importance, and how they are positioned and integrated into compositions. If media is unused, state so without implying images or other media are prohibited by the style. Explicitly describe the types of images used, such as mockups, nature photography, or product images.]
+Standard photography and live-action video are strictly unused to maintain a sleek, graphic-first environment[cite: 3]. The only imagery present consists of small, stylized mockups—such as web page thumbnails—that act functionally within UI components rather than as dominant visuals[cite: 3].
 
 Visual Boundaries
-[Describe what the design should avoid. Include unwanted aesthetics, visual clichés, excessive effects, inappropriate treatments, and anything that would make the project feel inconsistent.]
+The design strictly avoids visual clutter, skeuomorphism, slow dragging transitions, and complex 3D environments[cite: 3]. Exaggerated effects, organic textures, and highly saturated chaotic color palettes are completely prohibited to ensure the project remains flat, digital, and consistently native[cite: 3].
 
 Music & Sound Design
-[Describe the style, mood, and role of music and sound effects, how they complement the visuals, and the overall audio experience.]
+The audio experience should rely on energetic, rhythmic pacing that syncs tightly with typography and motion transitions[cite: 3]. Crisp, high-fidelity sound effects like mechanical typing, UI clicks, and subtle swooshes must underscore on-screen actions to create a tactile, responsive feel[cite: 3].
 
 Content Type & Dominance
-[Define what primarily makes up the video's on-screen content: visuals (illustrations, graphics, imagery, footage), app or product UI, text and typography, or a combination of these. Specify whether the video is visual-first, UI-first, text-first, or a hybrid such as visuals + UI, visuals + text, UI + text, or a balanced mix of all three. Describe which content types dominate, which play supporting roles, how they are combined or alternate, and whether their relative prominence changes throughout the video.]
+The content is a specialized hybrid of UI-first and text-first elements[cite: 3]. Bold typography dominates the narrative pacing, while highly stylized software interfaces—such as search bars, app icons, and cursor arrows—provide necessary functional context[cite: 3]. These two pillars alternate seamlessly, sharing maximum visual prominence without competing[cite: 3].
 
 Gradient Usage
-[State whether gradients are used in the main compositions or backgrounds. Gradients in secondary elements or minor details do not count. If absent, explicitly state that gradients are not used. If present, describe their colors, shape, direction, positioning, softness, intensity, transitions, and overall visual feeling in precise detail. Describe the actual shape of gradients. If they do not exist, state this immediately and explicitly, emphasizing its urgency.]
+Main compositions and backgrounds rely almost exclusively on solid colors, avoiding widespread gradients to maintain a flat, modern aesthetic[cite: 3]. When gradients are utilized as a background treatment, they appear as structured, vertical deep-blue bars with soft horizontal transitions, adding subtle geometric depth[cite: 3]. Otherwise, gradients are restricted strictly to minor secondary elements like application icons[cite: 3].
 
 Additional Design Direction
-[Freely describe any visual details, background treatments, stylistic preferences, or creative ideas that define how the video should look and feel.]
+The design should leverage stark thematic inversions, smoothly transitioning from a dark mode environment to a light mode palette to signal major narrative shifts[cite: 3]. All UI components must maintain rounded corners, subtle drop shadows, and clean geometric lines, heavily inspired by modern desktop interfaces[cite: 3].
