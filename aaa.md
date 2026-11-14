@@ -18,3 +18,9 @@ TTS.md
 Default to 60 fps, and qhd 2k high quality.
 always attach the final render to the chat when you finish.
 - Keep the video dynamic while allowing enough time to process all visuals, text, and narration, without feeling rushed or slow.
+
+
+2. Git
+- Commit and push per logical change: group related edits for one feature or fix into a single commit with a clear, concise message (not one commit per tiny tweak).
+- You are NOT allowed to work on separate branches, unless explicitly asked so, only the primary branch. No exceptions.
+- You are NOT allowed to access or read past conversations or commits in attempt to recover anything, unless explicitly authorized by me. NO RECOVERIES.
