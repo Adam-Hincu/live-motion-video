@@ -125,6 +125,51 @@
         background: var(--color-surface);
       }
 
+
+      /* ---------- app UI (recreated from the Live Motion settings window, light theme) ---------- */
+      #win {
+        position: absolute; left: 330px; top: 120px;
+        width: 1900px; height: 1200px;
+        border-radius: var(--radius-xl);
+        background: var(--color-surface-light);
+        box-shadow: var(--shadow-lg);
+        color: var(--color-text-light);
+        font-size: var(--font-size-ui);
+        letter-spacing: -0.01em;
+        display: flex; gap: 64px;
+        padding: 56px;
+      }
+      #win .side { position: relative; width: 560px; display: flex; flex-direction: column; gap: 24px; }
+      #win .main { position: relative; flex: 1; }
+      .field {
+        position: relative;
+        height: 76px; border: 3px solid var(--color-text-light); border-radius: var(--radius-full);
+        display: flex; align-items: center; padding: 0 32px;
+        white-space: nowrap;
+      }
+      .field.search { justify-content: flex-end; }
+      .field.search svg { width: 40px; height: 40px; }
+      .list { position: relative; flex: 1; border: 3px solid var(--color-text-light); border-radius: calc(var(--radius-xl) - 8px); padding: 14px; }
+      .item { position: relative; height: 76px; line-height: 76px; padding: 0 28px; border-radius: var(--radius-full); white-space: nowrap; }
+      .sel { position: absolute; left: 14px; right: 14px; top: 14px; height: 76px; border-radius: var(--radius-full); background: var(--color-text-light); }
+      .btn {
+        height: 84px; border: 3px solid var(--color-text-light); border-radius: var(--radius-full);
+        display: flex; align-items: center; justify-content: center;
+        font-weight: var(--font-weight-semibold);
+        width: 240px;
+      }
+      .panel { position: absolute; inset: 0; }
+      .panel .title { font-size: 44px; font-weight: var(--font-weight-semibold); height: 84px; line-height: 84px; margin-bottom: 8px; letter-spacing: -0.02em; }
+      .panel .head { font-weight: var(--font-weight-semibold); height: 92px; line-height: 116px; }
+      .panel .set-row { display: flex; align-items: center; justify-content: space-between; height: 104px; }
+      .panel .set-row .field { width: 520px; }
+      .field.drop::after { content: ""; position: absolute; right: 34px; top: 30px; border: 10px solid transparent; border-top: 12px solid var(--color-text-light); }
+      .field.num b { position: absolute; left: 32px; font-weight: var(--font-weight-medium); font-variant-numeric: tabular-nums; }
+      .field.num .spin { position: absolute; right: 26px; top: 12px; width: 32px; height: 46px; }
+      .toggle { position: relative; width: 120px; height: 64px; border: 3px solid var(--color-text-light); border-radius: var(--radius-full); }
+      .toggle i { position: absolute; top: 7px; left: 64px; width: 44px; height: 44px; border-radius: 50%; background: var(--color-text-light); }
+      #cursor { position: absolute; left: 0; top: 0; width: 64px; height: 64px; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)); }
+
       /* ---------- 46 wallpapers ---------- */
       .count {
         position: absolute; left: 0; right: 0; top: 214px;
@@ -187,7 +232,7 @@
         <div id="desk" class="card">
           <img id="desk-still" class="full" src="assets/stills/snow-noon.jpg" alt="" />
           <video id="v-reveal" class="full" src="assets/footage/snow_morning.mp4"
-            data-start="9.0" data-duration="8.3" data-track-index="2" muted playsinline></video>
+            data-start="9.0" data-duration="8.3" data-playback-rate="0.9" data-track-index="2" muted playsinline></video>
           <div id="player" class="player">
             <svg viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z" /></svg>
             <div class="track"><div id="fill" class="fill"></div></div>
@@ -218,7 +263,53 @@
       </div>
 
       <!-- ===================== 4. APP UI (light) ===================== -->
-      <div id="ui" class="layer" style="opacity: 0"></div>
+      <div id="ui" class="layer" style="opacity: 0">
+        <div id="ui-desk" class="layer" style="opacity: 0">
+          <video id="v-ui-cosmic" class="full" src="assets/footage/cosmic.mp4"
+            data-start="26.4" data-duration="7.3" data-playback-rate="0.62" data-track-index="9" muted playsinline></video>
+        </div>
+        <div id="win">
+          <div class="side">
+            <div class="field search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+            <div class="list" id="list">
+              <div id="sel" class="sel"></div>
+              <div class="item" data-k="snow">Snow Mountain</div>
+              <div class="item" data-k="phoenix">Phoenix · Passion</div>
+              <div class="item" data-k="cosmic">Cosmic · Garden Blue</div>
+              <div class="item" data-k="midnight">Cosmic · Midnight</div>
+              <div class="item" data-k="bubble">Bubble · Lamune</div>
+              <div class="item" data-k="earth">Earth</div>
+              <div class="item" data-k="mars">Mars</div>
+              <div class="item" data-k="saturn">Saturn · Rings</div>
+            </div>
+            <div class="btn" id="apply">Apply</div>
+          </div>
+          <div class="main">
+            <div class="panel" id="p-bubble">
+              <div class="title">Bubble · Lamune</div>
+              <div class="head">Playback quality</div>
+              <div class="set-row"><span>Frame limit</span><div class="field num"><b>60</b></div></div>
+              <div class="set-row"><span>Render resolution (%)</span><div class="field num"><b>100</b></div></div>
+            </div>
+            <div class="panel" id="p-cosmic">
+              <div class="title">Cosmic · Garden Blue</div>
+              <div class="head">Playback quality</div>
+              <div class="set-row"><span>Frame limit</span><div class="field num" id="c-fps"><b>60</b><b>30</b></div></div>
+              <div class="set-row"><span>Render resolution (%)</span><div class="field num" id="c-res"><b>100</b><b>110</b><b>125</b><b>150</b></div></div>
+            </div>
+            <div class="panel" id="p-snow">
+              <div class="title">Snow Mountain</div>
+              <div class="head">Mountain sky</div>
+              <div class="set-row"><span>Lighting</span><div class="field drop">Automatic (local time)</div></div>
+              <div class="set-row"><span>Clouds</span><div class="toggle on"><i></i></div></div>
+              <div class="head">Playback quality</div>
+              <div class="set-row"><span>Frame limit</span><div class="field num"><b>60</b></div></div>
+              <div class="set-row"><span>Render resolution (%)</span><div class="field num"><b>100</b></div></div>
+            </div>
+          </div>
+        </div>
+        <svg id="cursor" viewBox="0 0 32 32"><path d="M6 3 L6 26 L12 20.5 L16 29 L20 27.2 L16 18.8 L24 18.8 Z" fill="#FFFFFF" stroke="#1C1C1E" stroke-width="2" stroke-linejoin="round"/></svg>
+      </div>
 
       <!-- ===================== 5. 46 WALLPAPERS ===================== -->
       <div id="lib" class="layer" style="opacity: 0">
@@ -238,7 +329,7 @@
             data-start="38.0" data-duration="9.5" data-track-index="5" muted playsinline></video>
           <div id="end-dim" class="layer" style="background: var(--color-background); opacity: 0"></div>
         </div>
-        <div id="e-title" class="headline" style="top: 640px"></div>
+        <div id="e-title" class="headline" style="top: 220px"></div>
         <div id="end-brand" class="end-brand">
           <svg class="icon" id="end-icon" viewBox="0 0 256 256"></svg>
           <span class="name" id="end-name"></span>
@@ -265,7 +356,7 @@
       const ICON = {
         repeat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 3-3 3 3"/><path d="M13 18H7a2 2 0 0 1-2-2V6"/><path d="m22 15-3 3-3-3"/><path d="M11 6h6a2 2 0 0 1 2 2v10"/></svg>',
         sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>',
-        sunset: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10V2"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m16 6-4 4-4-4"/><path d="M16 18a4 4 0 0 0-8 0"/></svg>',
+        sunset: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h20"/><path d="M6 18a6 6 0 0 1 12 0"/><path d="M12 6V4"/><path d="m4.9 9.9-1.4-1.4"/><path d="m19.1 9.9 1.4-1.4"/><path d="M5 22h14"/></svg>',
         moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M19 3v4"/><path d="M21 5h-4"/></svg>',
       };
       // Live Motion app icon (redrawn from the installer's icon): picture frame linked to a gear
@@ -329,7 +420,7 @@
       }
       function typeOut(el, at, opts = {}) {
         tl.to(el.querySelectorAll(".ch"),
-          { opacity: 0, y: opts.y ?? -22, filter: "blur(10px)", duration: 0.3, ease: "power2.in", stagger: opts.per ?? 0.012 },
+          { opacity: 0, y: opts.y ?? -22, filter: "blur(10px)", duration: 0.22, ease: "power2.in", stagger: opts.per ?? 0.006 },
           at);
       }
 
@@ -347,15 +438,23 @@
       const SLIDES = ["snow_night", "earth", "saturn", "mars", "phoenix", "cosmic", "geometry", "bubble"];
       const SLOT = 2560 + 200;
       const strip = document.getElementById("strip");
+      // when each slide's clip starts, how long it runs and how fast it plays (clips are 3.5-5.5 s long)
+      const SLIDE_T = {
+        snow_night: [18.6, 3.1, 1, 1.3], earth: [18.8, 2.6, 1, 0], saturn: [18.8, 3.0, 1, 0], mars: [18.8, 3.4, 1, 0],
+        phoenix: [19.5, 3.4, 1, 0], cosmic: [20.5, 3.0, 1, 0], geometry: [21.0, 3.8, 1, 0], bubble: [22.4, 5.2, 0.68, 0],
+      };
       SLIDES.forEach((name, i) => {
+        const [start, dur, rate, mediaStart] = SLIDE_T[name];
         const s = document.createElement("div");
         s.className = "slide";
         s.style.left = `${i * SLOT}px`;
-        const start = name === "snow_night" ? 18.6 : 18.6;
         s.innerHTML = `<video id="vs-${name}" class="full" src="assets/footage/${name}.mp4" data-start="${start}"
-          data-duration="${24.6 - start}" data-track-index="${6 + (i % 3)}" ${name === "snow_night" ? 'data-media-start="1.3"' : ""} muted playsinline></video>`;
+          data-duration="${dur}" data-playback-rate="${rate}" data-track-index="${6 + (i % 3)}"
+          ${mediaStart ? `data-media-start="${mediaStart}"` : ""} muted playsinline></video>`;
         strip.appendChild(s);
       });
+      document.querySelectorAll(".field.num").forEach((f) => f.insertAdjacentHTML("beforeend",
+        '<svg class="spin" viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 5-5 5 5"/><path d="m3 15 5 5 5-5"/></svg>'));
 
       // thumbnail rows for "46 live wallpapers"
       const THUMBS = ["snow", "earth_globe", "cosmic_phoenix_v1", "saturn", "cosmic_v1", "mars_land2", "bubble1", "geometry",
@@ -393,9 +492,9 @@
       gsap.set(hTitle, { y: 420 });                      // starts centred
       const l1 = typeIn(hTitle, "Your desktop", 0.5);
       // "has looked the same for years": title lifts, the desktop card rises in
-      tl.to(hTitle, { y: 0, duration: 0.9, ease: "expo.inOut" }, 1.15);
-      tl.to("#desk", { opacity: 1, y: 160, duration: 0.9, ease: "expo.out" }, 1.45);
-      tl.fromTo("#desk", { filter: "blur(16px)" }, { filter: "blur(0px)", duration: 0.7, ease: "power2.out" }, 1.45);
+      tl.to(hTitle, { y: 0, duration: 0.9, ease: "expo.inOut" }, 1.0);
+      tl.to("#desk", { opacity: 1, y: 160, duration: 0.9, ease: "expo.out" }, 1.6);
+      tl.fromTo("#desk", { filter: "blur(16px)" }, { filter: "blur(0px)", duration: 0.7, ease: "power2.out" }, 1.6);
 
       // "The same still picture"
       typeOut(l1, 2.55);
@@ -412,7 +511,7 @@
           { x: slot * ROW_GAP, opacity: 1, duration: 0.85, ease: "expo.out" },
           3.95 + Math.abs(slot) * 0.08);
       });
-      typeOut(l2, 3.8);
+      typeOut(l2, 3.65);
       const l3 = typeIn(hTitle, "Every single day", 4.0);
 
       // "And many live wallpapers are just a video": copies fold back into one card with a video player
@@ -430,7 +529,7 @@
         if (k < 2) tl.to("#fill", { opacity: 0, duration: 0.12, ease: "power1.in" }, b - 0.05)
                      .set("#fill", { opacity: 1, scaleX: 0 }, b + 0.1);
       });
-      typeOut(l4, 7.15);
+      typeOut(l4, 6.98);
       const l5 = typeIn(hTitle, "On {icon:repeat} repeat", 7.3);
 
       // =========================================================
@@ -466,7 +565,7 @@
         }
       });
       gsap.set(["#tm2", "#tm3"], { opacity: 0 });
-      tl.to("#pill", { opacity: 0, y: 40, filter: "blur(10px)", duration: 0.4, ease: "power2.in" }, 18.45);
+      tl.to("#pill", { opacity: 0, y: 40, filter: "blur(10px)", duration: 0.35, ease: "power2.in" }, 18.15);
 
       // carousel takes over seamlessly at full scale on the night mountain
       const stripScale = document.getElementById("strip-scale");
@@ -490,7 +589,84 @@
       // =========================================================
       // 4. APP UI  (24.4 - 33.4)  -> built in ui-scene section
       // =========================================================
-      window.__buildUiScene && window.__buildUiScene(tl, C);
+      // the carousel lands on Bubble, which becomes the live desktop behind the settings window
+      tl.to(stripScale, { scale: 1, duration: 0.75, ease: "expo.inOut" }, 23.8);
+      tl.set("#ui", { opacity: 1 }, 24.2);
+      gsap.set("#win", { opacity: 0 });
+      tl.fromTo("#win", { opacity: 0, y: 80, scale: 0.94, filter: "blur(14px)" },
+        { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.8, ease: "expo.out" }, 24.3);
+
+      // positions inside the window (offsets are unaffected by transforms)
+      const rel = (el) => { let x = 0, y = 0; while (el && el.id !== "root") { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return { x, y }; };
+      const items = {}; document.querySelectorAll(".item").forEach((it) => (items[it.dataset.k] = it));
+      const itemY = (k) => items[k].offsetTop;
+      const at = (el, dx, dy) => { const r = rel(el); return { x: r.x + dx, y: r.y + dy }; };
+      const resUp = () => at(document.getElementById("c-res"), 478, 18);
+      const fpsDown = at(document.getElementById("c-fps"), 478, 46);
+      const applyAt = at(document.getElementById("apply"), 120, 42);
+
+      // selection pill starts on Bubble
+      gsap.set("#sel", { y: itemY("bubble") - 14 });
+      gsap.set(items.bubble, { color: "#FFFFFF" });
+      gsap.set(["#p-cosmic", "#p-snow"], { opacity: 0 });
+      gsap.set("#c-res b", { opacity: 0 }); gsap.set("#c-res b:first-child", { opacity: 1 });
+      gsap.set("#c-fps b", { opacity: 0 }); gsap.set("#c-fps b:first-child", { opacity: 1 });
+      gsap.set("#cursor", { x: 2300, y: 1500 });
+
+      const cursorTo = (p, t0, d = 0.5) => tl.to("#cursor", { x: p.x, y: p.y, duration: d, ease: "power3.inOut" }, t0);
+      const click = (t0, target) => {
+        tl.to("#cursor", { scale: 0.85, duration: 0.08, ease: "power2.out", yoyo: true, repeat: 1, transformOrigin: "10% 10%" }, t0);
+        if (target) tl.to(target, { scale: 0.96, duration: 0.08, ease: "power2.out", yoyo: true, repeat: 1 }, t0);
+      };
+      const select = (from, to, t0) => {
+        tl.to("#sel", { y: itemY(to) - 14, duration: 0.45, ease: "expo.inOut" }, t0);
+        tl.to(items[from], { color: C.textLight, duration: 0.3 }, t0 + 0.05);
+        tl.to(items[to], { color: "#FFFFFF", duration: 0.3 }, t0 + 0.12);
+      };
+      const panel = (from, to, t0) => {
+        tl.to(from, { opacity: 0, y: -16, filter: "blur(8px)", duration: 0.25, ease: "power2.in" }, t0);
+        tl.fromTo(to, { opacity: 0, y: 16, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, t0 + 0.2);
+      };
+      const NUMS = { res: document.querySelectorAll("#c-res b"), fps: document.querySelectorAll("#c-fps b") };
+      const roll = (key, i, t0) => {
+        const bs = NUMS[key];
+        tl.to(bs[i - 1], { opacity: 0, y: -20, duration: 0.18, ease: "power2.in" }, t0);
+        tl.fromTo(bs[i], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25, ease: "expo.out" }, t0 + 0.08);
+      };
+      tl.fromTo("#cursor", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 24.6);
+
+      // "Pick a wallpaper"
+      cursorTo(at(items.cosmic, 300, 40), 24.55, 0.45);
+      click(25.0); select("bubble", "cosmic", 25.02); panel("#p-bubble", "#p-cosmic", 25.05);
+      // "adjust it"
+      cursorTo(resUp(), 25.35, 0.4);
+      click(25.75); roll("res", 1, 25.78);
+      click(26.05); roll("res", 2, 26.08);
+      // "and press Apply": the desktop behind turns into the chosen wallpaper
+      cursorTo(applyAt, 26.2, 0.42);
+      click(26.68, "#apply");
+      tl.to("#apply", { backgroundColor: C.textLight, color: "#FFFFFF", duration: 0.15 }, 26.68)
+        .to("#apply", { backgroundColor: "rgba(0,0,0,0)", color: C.textLight, duration: 0.35 }, 27.0);
+      tl.fromTo("#ui-desk", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.inOut" }, 26.75);
+      tl.set("#carousel", { opacity: 0 }, 27.6);
+
+      // "Every wallpaper keeps its own settings"
+      cursorTo(at(items.snow, 300, 40), 27.55, 0.5);
+      click(28.1); select("cosmic", "snow", 28.12); panel("#p-cosmic", "#p-snow", 28.15);
+      cursorTo(at(items.cosmic, 300, 40), 28.9, 0.45);
+      click(29.4); select("snow", "cosmic", 29.42); panel("#p-snow", "#p-cosmic", 29.45);
+      // "so you choose the balance between detail and performance"
+      cursorTo(resUp(), 30.0, 0.45);
+      click(30.62); roll("res", 3, 30.65);
+      cursorTo(fpsDown, 31.15, 0.4);
+      click(31.8); roll("fps", 1, 31.83);
+      tl.to("#cursor", { opacity: 0, duration: 0.3 }, 32.6);
+
+      // out: window and desktop give way to a light canvas
+      tl.to("#win", { opacity: 0, y: -60, scale: 0.96, filter: "blur(14px)", duration: 0.55, ease: "power2.in" }, 32.75);
+      tl.to("#bg", { backgroundColor: C.bgLight, duration: 0.01 }, 32.9);
+      tl.to("#ui-desk", { opacity: 0, scale: 1.04, filter: "blur(30px)", duration: 0.7, ease: "power2.inOut" }, 32.85);
+      tl.set("#ui", { opacity: 0 }, 33.6);
 
       // =========================================================
       // 5. 46 WALLPAPERS / ONE INSTALLER / FREE  (33.4 - 38.5)
@@ -503,28 +679,30 @@
       [0, 1, 2].forEach((r) => {
         const dir = r % 2 ? 1 : -1;
         const from = dir < 0 ? -200 : -2600;
-        tl.fromTo(`#row${r}`, { x: from, opacity: 0 }, { x: from + dir * 900, opacity: 1, duration: 2.6, ease: "power1.out" }, 33.65 + r * 0.06);
-        tl.to(`#row${r}`, { opacity: 0, y: 60, duration: 0.5, ease: "power2.in" }, 35.25);
+        const row = document.getElementById("row" + r);
+        tl.fromTo(row, { x: from }, { x: from + dir * 700, duration: 2.0, ease: "power1.out" }, 33.6);
+        tl.fromTo(row, { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.7, ease: "expo.out" }, 33.65 + r * 0.06);
+        tl.to(row, { opacity: 0, y: 60, filter: "blur(10px)", duration: 0.45, ease: "power2.in" }, 35.15 + r * 0.04);
       });
       tl.to("#count", { opacity: 0, y: -40, filter: "blur(12px)", duration: 0.45, ease: "power2.in" }, 35.2);
-      tl.fromTo("#file", { opacity: 0, scale: 0.9, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 35.45);
+      tl.fromTo("#file", { opacity: 0, scale: 0.9, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 35.65);
       tl.to("#file", { opacity: 0, scale: 0.94, filter: "blur(12px)", duration: 0.4, ease: "power2.in" }, 36.75);
       typeIn(document.getElementById("free"), "Free", 37.0, { color: C.textLight, per: 0.05 });
 
       // =========================================================
       // 6. END  (38.4 - 47.5)
       // =========================================================
-      tl.to("#bg", { backgroundColor: C.bg, duration: 0.6, ease: "power2.inOut" }, 38.1);
+      tl.to("#bg", { backgroundColor: C.bg, duration: 0.35, ease: "power2.inOut" }, 38.0);
       tl.to("#free", { opacity: 0, filter: "blur(14px)", duration: 0.4, ease: "power2.in" }, 38.0);
       tl.set("#lib", { opacity: 0 }, 38.45);
       tl.set("#end", { opacity: 1 }, 38.2);
       tl.fromTo("#end-media", { opacity: 0, y: 120, scale: 0.42 }, { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 38.25);
       tl.to("#end-media", { scale: 1, borderRadius: 0, duration: 1.1, ease: "expo.inOut" }, 38.6);
       const e1 = typeIn(document.getElementById("e-title"), "Bring your desktop to life", 38.75, { per: 0.022 });
-      typeOut(e1, 39.95);
+      typeOut(e1, 39.7);
       tl.to("#end-dim", { opacity: 0.82, duration: 0.9, ease: "power2.inOut" }, 40.0);
       tl.to("#end-media", { filter: "blur(30px)", duration: 0.9, ease: "power2.inOut" }, 40.0);
-      tl.fromTo("#end-icon", { opacity: 0, scale: 0.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 40.3);
+      tl.fromTo("#end-icon", { opacity: 0, scale: 0.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 40.25);
       typeIn(document.getElementById("end-name"), "Live Motion", 40.55, { per: 0.035, inline: true });
       typeIn(document.getElementById("url"), "livemotionapp.com", 41.45, { per: 0.025, color: css("--color-text-secondary") });
 
