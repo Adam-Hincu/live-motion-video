@@ -1,24 +1,32 @@
 {
   "identity": {
-    "name": null,
-    "description": null,
-    "website": null
+    "name": "Live Motion",
+    "description": "Free real-time live wallpapers for Windows. Every scene is rendered live with 3D scenes and shaders, not played back as a video. 46 wallpapers across landscapes, planets and abstract forms, each with its own settings, Lock and Home views, adjustable render resolution (1%-250%) and frame limit, plus light and dark app themes.",
+    "website": "https://livemotionapp.com/"
   },
   "audience_and_problem": {
-    "main_problem": null,
-    "target_audience": null
+    "main_problem": "Your desktop shows the same still picture every day, and most live wallpapers are just looping videos.",
+    "target_audience": "Windows users who want a beautiful, living desktop without paying or wrestling with complicated tools."
   },
   "branding": {
-    "logo": null,
-    "logo_description": null,
-    "brand_colors": null
+    "logo": "N/A",
+    "logo_description": "No standalone logo. The brand uses the plain 'Live Motion' wordmark in a clean grotesk (Inter-style). The app icon is a small picture frame linked by a line to a gear (white on black or black on white).",
+    "brand_colors": "Near-black #101113 site background with white text; the wallpapers themselves carry the colour (sky blue, teal, Mars orange, Saturn green)."
   },
   "assets": {
-    "logo_files": null
+    "logo_files": "N/A",
+    "wallpaper_previews": "assets/wallpapers/*.png (official 1920x1080 stills from livemotionapp.com/wallpapers)",
+    "live_footage": "assets/footage/*.mp4 (live renders recorded from the installed Live Motion app)"
   },
   "video_settings": {
-    "aspect_ratio": null,
-    "has_text_to_speech": false
+    "aspect_ratio": "16:9 (2560x1440, 60 FPS)",
+    "has_text_to_speech": true,
+    "tts": {
+      "provider": "Fish Audio API",
+      "model": "s2.1-pro-free",
+      "voice_id": "f0c0270e9e4840deb4a5887a51a179f5",
+      "api_key_location": ".env.local (FISH_AUDIO_API_KEY)"
+    }
   },
-  "additional_context": null
+  "additional_context": "Reference video: references/introducing-aside.mp4 (fast kinetic typography, centred words with inline icons, dark-to-light inversion, smooth morphs). Key facts: 64-bit Windows, 1.09 GB single self-contained installer, OpenGL and Vulkan builds, all 46 wallpapers included, free. Steps: install, choose a wallpaper, adjust, press Apply."
 }

@@ -1,0 +1,11 @@
+[
+  {"t": 1.47, "sound": "tap", "gain": 0.22, "pitch": -2},
+  {"t": 3.98, "sound": "conga", "gain": 0.14, "pitch": -3},
+  {"t": 4.06, "sound": "conga", "gain": 0.12, "pitch": -1},
+  {"t": 4.12, "sound": "conga", "gain": 0.12, "pitch": -3},
+  {"t": 4.14, "sound": "conga", "gain": 0.12, "pitch": -1},
+  {"t": 6.88, "sound": "tap", "gain": 0.12, "pitch": -4},
+  {"t": 8.03, "sound": "tap", "gain": 0.12, "pitch": -4},
+  {"t": 9.36, "sound": "timp", "gain": 0.35, "pitch": 0},
+  {"t": 40.3, "sound": "timp", "gain": 0.28, "pitch": 0}
+]

@@ -1,0 +1,797 @@
+{
+ "audio": "audio/voice/take2.wav",
+ "duration": 37.227,
+ "words": [
+  {
+   "word": "Your",
+   "token": "your",
+   "start": 0.02,
+   "end": 0.14,
+   "score": 0.989
+  },
+  {
+   "word": "desktop",
+   "token": "desktop",
+   "start": 0.18,
+   "end": 0.56,
+   "score": 0.736
+  },
+  {
+   "word": "has",
+   "token": "has",
+   "start": 0.6,
+   "end": 0.72,
+   "score": 0.999
+  },
+  {
+   "word": "looked",
+   "token": "looked",
+   "start": 0.78,
+   "end": 0.94,
+   "score": 0.957
+  },
+  {
+   "word": "the",
+   "token": "the",
+   "start": 0.96,
+   "end": 1.02,
+   "score": 0.997
+  },
+  {
+   "word": "same",
+   "token": "same",
+   "start": 1.12,
+   "end": 1.36,
+   "score": 0.999
+  },
+  {
+   "word": "for",
+   "token": "for",
+   "start": 1.4,
+   "end": 1.52,
+   "score": 0.99
+  },
+  {
+   "word": "years.",
+   "token": "years",
+   "start": 1.58,
+   "end": 2.0,
+   "score": 0.903
+  },
+  {
+   "word": "The",
+   "token": "the",
+   "start": 2.22,
+   "end": 2.3,
+   "score": 0.97
+  },
+  {
+   "word": "same",
+   "token": "same",
+   "start": 2.38,
+   "end": 2.6,
+   "score": 0.982
+  },
+  {
+   "word": "still",
+   "token": "still",
+   "start": 2.66,
+   "end": 2.841,
+   "score": 0.976
+  },
+  {
+   "word": "picture,",
+   "token": "picture",
+   "start": 2.901,
+   "end": 3.261,
+   "score": 0.987
+  },
+  {
+   "word": "every",
+   "token": "every",
+   "start": 3.441,
+   "end": 3.661,
+   "score": 0.925
+  },
+  {
+   "word": "single",
+   "token": "single",
+   "start": 3.721,
+   "end": 3.981,
+   "score": 0.997
+  },
+  {
+   "word": "day.",
+   "token": "day",
+   "start": 4.001,
+   "end": 4.181,
+   "score": 1.0
+  },
+  {
+   "word": "And",
+   "token": "and",
+   "start": 4.441,
+   "end": 4.541,
+   "score": 0.906
+  },
+  {
+   "word": "many",
+   "token": "many",
+   "start": 4.561,
+   "end": 4.741,
+   "score": 0.929
+  },
+  {
+   "word": "live",
+   "token": "live",
+   "start": 4.821,
+   "end": 4.981,
+   "score": 0.997
+  },
+  {
+   "word": "wallpapers",
+   "token": "wallpapers",
+   "start": 5.021,
+   "end": 5.521,
+   "score": 0.999
+  },
+  {
+   "word": "are",
+   "token": "are",
+   "start": 5.601,
+   "end": 5.701,
+   "score": 0.974
+  },
+  {
+   "word": "just",
+   "token": "just",
+   "start": 5.721,
+   "end": 5.921,
+   "score": 1.0
+  },
+  {
+   "word": "a",
+   "token": "a",
+   "start": 5.981,
+   "end": 6.001,
+   "score": 0.995
+  },
+  {
+   "word": "video,",
+   "token": "video",
+   "start": 6.061,
+   "end": 6.321,
+   "score": 1.0
+  },
+  {
+   "word": "playing",
+   "token": "playing",
+   "start": 6.661,
+   "end": 6.941,
+   "score": 1.0
+  },
+  {
+   "word": "on",
+   "token": "on",
+   "start": 6.981,
+   "end": 7.061,
+   "score": 0.999
+  },
+  {
+   "word": "repeat.",
+   "token": "repeat",
+   "start": 7.101,
+   "end": 7.481,
+   "score": 0.905
+  },
+  {
+   "word": "Meet",
+   "token": "meet",
+   "start": 7.861,
+   "end": 8.041,
+   "score": 0.883
+  },
+  {
+   "word": "Live",
+   "token": "live",
+   "start": 8.101,
+   "end": 8.302,
+   "score": 0.996
+  },
+  {
+   "word": "Motion.",
+   "token": "motion",
+   "start": 8.342,
+   "end": 8.702,
+   "score": 0.991
+  },
+  {
+   "word": "Free",
+   "token": "free",
+   "start": 9.042,
+   "end": 9.242,
+   "score": 1.0
+  },
+  {
+   "word": "live",
+   "token": "live",
+   "start": 9.282,
+   "end": 9.502,
+   "score": 0.915
+  },
+  {
+   "word": "wallpapers",
+   "token": "wallpapers",
+   "start": 9.522,
+   "end": 10.022,
+   "score": 0.992
+  },
+  {
+   "word": "for",
+   "token": "for",
+   "start": 10.062,
+   "end": 10.162,
+   "score": 0.994
+  },
+  {
+   "word": "Windows,",
+   "token": "windows",
+   "start": 10.202,
+   "end": 10.582,
+   "score": 0.997
+  },
+  {
+   "word": "rendered",
+   "token": "rendered",
+   "start": 10.802,
+   "end": 11.102,
+   "score": 0.998
+  },
+  {
+   "word": "in",
+   "token": "in",
+   "start": 11.142,
+   "end": 11.222,
+   "score": 0.999
+  },
+  {
+   "word": "real",
+   "token": "real",
+   "start": 11.262,
+   "end": 11.442,
+   "score": 1.0
+  },
+  {
+   "word": "time.",
+   "token": "time",
+   "start": 11.482,
+   "end": 11.782,
+   "score": 0.996
+  },
+  {
+   "word": "Watch",
+   "token": "watch",
+   "start": 12.202,
+   "end": 12.442,
+   "score": 0.994
+  },
+  {
+   "word": "clouds",
+   "token": "clouds",
+   "start": 12.482,
+   "end": 12.782,
+   "score": 0.999
+  },
+  {
+   "word": "drift",
+   "token": "drift",
+   "start": 12.842,
+   "end": 13.082,
+   "score": 0.999
+  },
+  {
+   "word": "across",
+   "token": "across",
+   "start": 13.122,
+   "end": 13.382,
+   "score": 1.0
+  },
+  {
+   "word": "a",
+   "token": "a",
+   "start": 13.442,
+   "end": 13.462,
+   "score": 0.507
+  },
+  {
+   "word": "snowy",
+   "token": "snowy",
+   "start": 13.522,
+   "end": 13.803,
+   "score": 0.965
+  },
+  {
+   "word": "mountain,",
+   "token": "mountain",
+   "start": 13.863,
+   "end": 14.203,
+   "score": 0.946
+  },
+  {
+   "word": "while",
+   "token": "while",
+   "start": 14.403,
+   "end": 14.563,
+   "score": 0.862
+  },
+  {
+   "word": "the",
+   "token": "the",
+   "start": 14.583,
+   "end": 14.643,
+   "score": 0.989
+  },
+  {
+   "word": "sky",
+   "token": "sky",
+   "start": 14.683,
+   "end": 14.943,
+   "score": 1.0
+  },
+  {
+   "word": "follows",
+   "token": "follows",
+   "start": 15.003,
+   "end": 15.303,
+   "score": 0.951
+  },
+  {
+   "word": "the",
+   "token": "the",
+   "start": 15.343,
+   "end": 15.423,
+   "score": 0.998
+  },
+  {
+   "word": "time",
+   "token": "time",
+   "start": 15.443,
+   "end": 15.683,
+   "score": 0.992
+  },
+  {
+   "word": "of",
+   "token": "of",
+   "start": 15.703,
+   "end": 15.763,
+   "score": 0.996
+  },
+  {
+   "word": "day.",
+   "token": "day",
+   "start": 15.803,
+   "end": 15.983,
+   "score": 1.0
+  },
+  {
+   "word": "Put",
+   "token": "put",
+   "start": 16.363,
+   "end": 16.483,
+   "score": 1.0
+  },
+  {
+   "word": "a",
+   "token": "a",
+   "start": 16.523,
+   "end": 16.543,
+   "score": 0.999
+  },
+  {
+   "word": "whole",
+   "token": "whole",
+   "start": 16.623,
+   "end": 16.843,
+   "score": 0.942
+  },
+  {
+   "word": "planet",
+   "token": "planet",
+   "start": 16.863,
+   "end": 17.203,
+   "score": 0.974
+  },
+  {
+   "word": "on",
+   "token": "on",
+   "start": 17.263,
+   "end": 17.343,
+   "score": 1.0
+  },
+  {
+   "word": "your",
+   "token": "your",
+   "start": 17.363,
+   "end": 17.483,
+   "score": 0.953
+  },
+  {
+   "word": "screen.",
+   "token": "screen",
+   "start": 17.523,
+   "end": 17.823,
+   "score": 0.987
+  },
+  {
+   "word": "Or",
+   "token": "or",
+   "start": 18.183,
+   "end": 18.263,
+   "score": 0.946
+  },
+  {
+   "word": "let",
+   "token": "let",
+   "start": 18.283,
+   "end": 18.423,
+   "score": 0.896
+  },
+  {
+   "word": "soft,",
+   "token": "soft",
+   "start": 18.503,
+   "end": 18.783,
+   "score": 0.996
+  },
+  {
+   "word": "colorful",
+   "token": "colorful",
+   "start": 18.823,
+   "end": 19.204,
+   "score": 0.951
+  },
+  {
+   "word": "shapes",
+   "token": "shapes",
+   "start": 19.264,
+   "end": 19.524,
+   "score": 0.927
+  },
+  {
+   "word": "flow",
+   "token": "flow",
+   "start": 19.584,
+   "end": 19.764,
+   "score": 1.0
+  },
+  {
+   "word": "behind",
+   "token": "behind",
+   "start": 19.824,
+   "end": 20.064,
+   "score": 1.0
+  },
+  {
+   "word": "your",
+   "token": "your",
+   "start": 20.084,
+   "end": 20.184,
+   "score": 0.989
+  },
+  {
+   "word": "windows.",
+   "token": "windows",
+   "start": 20.204,
+   "end": 20.624,
+   "score": 0.992
+  },
+  {
+   "word": "Pick",
+   "token": "pick",
+   "start": 21.004,
+   "end": 21.164,
+   "score": 0.999
+  },
+  {
+   "word": "a",
+   "token": "a",
+   "start": 21.184,
+   "end": 21.204,
+   "score": 0.996
+  },
+  {
+   "word": "wallpaper,",
+   "token": "wallpaper",
+   "start": 21.284,
+   "end": 21.724,
+   "score": 0.968
+  },
+  {
+   "word": "adjust",
+   "token": "adjust",
+   "start": 21.964,
+   "end": 22.304,
+   "score": 0.948
+  },
+  {
+   "word": "it,",
+   "token": "it",
+   "start": 22.364,
+   "end": 22.444,
+   "score": 0.999
+  },
+  {
+   "word": "and",
+   "token": "and",
+   "start": 22.624,
+   "end": 22.724,
+   "score": 0.929
+  },
+  {
+   "word": "press",
+   "token": "press",
+   "start": 22.744,
+   "end": 22.924,
+   "score": 0.95
+  },
+  {
+   "word": "Apply.",
+   "token": "apply",
+   "start": 22.984,
+   "end": 23.304,
+   "score": 0.942
+  },
+  {
+   "word": "Every",
+   "token": "every",
+   "start": 23.884,
+   "end": 24.084,
+   "score": 1.0
+  },
+  {
+   "word": "wallpaper",
+   "token": "wallpaper",
+   "start": 24.164,
+   "end": 24.585,
+   "score": 0.999
+  },
+  {
+   "word": "keeps",
+   "token": "keeps",
+   "start": 24.645,
+   "end": 24.865,
+   "score": 0.999
+  },
+  {
+   "word": "its",
+   "token": "its",
+   "start": 24.905,
+   "end": 25.005,
+   "score": 0.999
+  },
+  {
+   "word": "own",
+   "token": "own",
+   "start": 25.105,
+   "end": 25.245,
+   "score": 0.999
+  },
+  {
+   "word": "settings,",
+   "token": "settings",
+   "start": 25.345,
+   "end": 25.725,
+   "score": 0.962
+  },
+  {
+   "word": "so",
+   "token": "so",
+   "start": 25.985,
+   "end": 26.045,
+   "score": 0.999
+  },
+  {
+   "word": "you",
+   "token": "you",
+   "start": 26.145,
+   "end": 26.245,
+   "score": 0.985
+  },
+  {
+   "word": "choose",
+   "token": "choose",
+   "start": 26.305,
+   "end": 26.545,
+   "score": 0.791
+  },
+  {
+   "word": "the",
+   "token": "the",
+   "start": 26.565,
+   "end": 26.645,
+   "score": 0.934
+  },
+  {
+   "word": "balance",
+   "token": "balance",
+   "start": 26.665,
+   "end": 26.985,
+   "score": 1.0
+  },
+  {
+   "word": "between",
+   "token": "between",
+   "start": 27.005,
+   "end": 27.265,
+   "score": 1.0
+  },
+  {
+   "word": "detail",
+   "token": "detail",
+   "start": 27.305,
+   "end": 27.685,
+   "score": 0.999
+  },
+  {
+   "word": "and",
+   "token": "and",
+   "start": 27.805,
+   "end": 27.925,
+   "score": 0.96
+  },
+  {
+   "word": "performance.",
+   "token": "performance",
+   "start": 27.945,
+   "end": 28.525,
+   "score": 0.987
+  },
+  {
+   "word": "Forty-six",
+   "token": "forty",
+   "start": 28.825,
+   "end": 29.045,
+   "score": 0.206
+  },
+  {
+   "word": "six",
+   "token": "six",
+   "start": 29.145,
+   "end": 29.305,
+   "score": 0.333
+  },
+  {
+   "word": "live",
+   "token": "live",
+   "start": 29.425,
+   "end": 29.645,
+   "score": 0.989
+  },
+  {
+   "word": "wallpapers.",
+   "token": "wallpapers",
+   "start": 29.685,
+   "end": 30.266,
+   "score": 0.987
+  },
+  {
+   "word": "One",
+   "token": "one",
+   "start": 30.646,
+   "end": 30.786,
+   "score": 0.843
+  },
+  {
+   "word": "simple",
+   "token": "simple",
+   "start": 30.846,
+   "end": 31.106,
+   "score": 0.842
+  },
+  {
+   "word": "installer.",
+   "token": "installer",
+   "start": 31.126,
+   "end": 31.586,
+   "score": 0.559
+  },
+  {
+   "word": "Completely",
+   "token": "completely",
+   "start": 31.906,
+   "end": 32.326,
+   "score": 0.952
+  },
+  {
+   "word": "free.",
+   "token": "free",
+   "start": 32.386,
+   "end": 32.586,
+   "score": 0.997
+  },
+  {
+   "word": "Bring",
+   "token": "bring",
+   "start": 32.846,
+   "end": 33.026,
+   "score": 0.964
+  },
+  {
+   "word": "your",
+   "token": "your",
+   "start": 33.046,
+   "end": 33.146,
+   "score": 0.954
+  },
+  {
+   "word": "desktop",
+   "token": "desktop",
+   "start": 33.166,
+   "end": 33.526,
+   "score": 0.766
+  },
+  {
+   "word": "to",
+   "token": "to",
+   "start": 33.566,
+   "end": 33.626,
+   "score": 0.996
+  },
+  {
+   "word": "life.",
+   "token": "life",
+   "start": 33.706,
+   "end": 33.986,
+   "score": 0.994
+  },
+  {
+   "word": "Download",
+   "token": "download",
+   "start": 34.286,
+   "end": 34.646,
+   "score": 0.941
+  },
+  {
+   "word": "Live",
+   "token": "live",
+   "start": 34.706,
+   "end": 34.906,
+   "score": 0.997
+  },
+  {
+   "word": "Motion",
+   "token": "motion",
+   "start": 34.926,
+   "end": 35.247,
+   "score": 0.951
+  },
+  {
+   "word": "at",
+   "token": "at",
+   "start": 35.467,
+   "end": 35.547,
+   "score": 0.998
+  },
+  {
+   "word": "livemotionapp.com.",
+   "token": "livemotionapp",
+   "start": 35.627,
+   "end": 36.407,
+   "score": 0.925
+  },
+  {
+   "word": "dot",
+   "token": "dot",
+   "start": 36.547,
+   "end": 36.727,
+   "score": 0.917
+  },
+  {
+   "word": "com",
+   "token": "com",
+   "start": 36.787,
+   "end": 37.027,
+   "score": 0.999
+  }
+ ]
+}

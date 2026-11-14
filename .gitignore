@@ -6,3 +6,15 @@ node_modules/
 renders/
 searches/
 analyses/
+
+# local tools and models
+.venv-align/
+models/
+references/
+.hyperframes/
+audio/music/*_raw.wav
+audio/music/music_dry.wav
+audio/music/music_rev.wav
+audio/voice/take1.*
+audio/voice/take3.*
+audio/mix/preview_full.wav
